@@ -21,5 +21,4 @@ Example:
 </PRE>
 If you want GUI window to appear, just enter first two arguments: mode and input file. Main window should appear on center of screen asking for secret.
 
-Author:
-igor.delac@gmail.com
+![aes](aes.gif)

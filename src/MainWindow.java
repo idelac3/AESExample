@@ -43,7 +43,7 @@ public class MainWindow extends JFrame {
 		add(row3);
 		add(row4);
 		
-		add(new JLabel("Author: igor.delac@gmail.com"));
+		add(new JLabel("Author: igor.delac@gmail.com", SwingConstants.CENTER));
 		
 		pack();
 		

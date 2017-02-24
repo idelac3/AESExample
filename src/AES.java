@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.util.Arrays;
@@ -20,8 +21,9 @@ public class AES {
 	private IvParameterSpec ivParameterSpec;
 
 	private void setKey(String myKey) throws Exception {
-		MessageDigest sha = null;
 
+		MessageDigest sha;
+		
 		key = myKey.getBytes("UTF-8");
 		sha = MessageDigest.getInstance("SHA-1");
 		key = sha.digest(key);
@@ -107,13 +109,60 @@ public class AES {
 
 	}
 
+	public static void usage() throws Exception {
+		
+		PrintStream log = System.out;
+		
+		AES aes= new AES();
+		
+		final String TRANSFORMATION = aes.TRANSFORMATION;
+		
+		long currTime = System.currentTimeMillis();
+		String secret = String.valueOf(currTime);
+		
+		aes.setKey(secret);
+		
+		final int keyLenght = aes.key.length;
+		
+		String keyValue = "";
+		for (byte value : aes.key) {
+			keyValue = keyValue + String.format("%x ", value);
+		}
+		
+		log.println("AES Eaxmple");
+		log.println("");
+		log.println("Usage:");
+		log.println(" java AES [ encrypt | decrypt ] inputFile outputFile secret");
+		log.println("");
+		log.println("Example:");
+		log.println(" java AES encrypt /home/john/report1.txt /tmp/report1.txt.c mysecret1234");
+		log.println("");
+		log.println("Transformation: " + TRANSFORMATION);
+		log.println("    Key length: " + keyLenght + " [ " + keyValue + "]");
+		log.println("");
+		log.println("Author: igor.delac@gmail.com");
+		log.println("");
+		
+	}
+	
 	public static void main(String[] args) throws Exception {
 
 		boolean foundKeyword = false;
 
 		String method = null, inputFile = null, outputFile = null, key = null;
 
+		if (args.length == 0) {
+			usage();
+			return;
+		}
+		
 		for (String arg : args) {
+			
+			if (arg.equalsIgnoreCase("-h") || arg.equalsIgnoreCase("--help")) {
+				usage();
+				return;
+			}
+
 			if (arg.equalsIgnoreCase("decrypt") || arg.equalsIgnoreCase("encrypt")) {
 				foundKeyword = true;
 			}
