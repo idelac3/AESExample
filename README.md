@@ -31,7 +31,7 @@ Youtube video shows how to install AES into home folder.
 
 ## Thunar integration example
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=Yp0JzcDz_Y78
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=p0JzcDz_Y78
 " target="_blank"><img src="http://img.youtube.com/vi/p0JzcDz_Y78/0.jpg" 
 alt="Xfce Thunar integration Example" width="240" height="180" border="10" /></a>
 <BR>
